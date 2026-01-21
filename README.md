@@ -22,7 +22,12 @@ Developed a backend service for managing flights, passengers, and bookings using
 
 - Layered Architecture  
   - Clean separation of Controller → Service → Repository  
-  - Improves readability, maintainability, and scalability  
+  - Improves readability, maintainability, and scalability
+ 
+- Email Notification
+  - Flight booking with passenger and payment validation
+  - Email confirmation with detailed flight and passenger information
+    
 
 ---
 
