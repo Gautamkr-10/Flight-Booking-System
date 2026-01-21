@@ -106,22 +106,23 @@ public class FlightService {
 		}
 		throw new NoRecordFoundException("Flight not found for ID: " + id);
 	}
-	
+
 	// Get Flight with pagination & sorting
-		public ResponseEntity<ResponseStructure<Page<Flight>>> getFlightByPageAndSort(int pageNumber, int pageSize,String field) {
+	public ResponseEntity<ResponseStructure<Page<Flight>>> getFlightByPageAndSort(int pageNumber, int pageSize,
+			String field) {
 
-			Page<Flight> flight = flightDao.getFlightByPageAndSort(pageNumber, pageSize, field);
-			ResponseStructure<Page<Flight>> response = new ResponseStructure<>();
+		Page<Flight> flight = flightDao.getFlightByPageAndSort(pageNumber, pageSize, field);
+		ResponseStructure<Page<Flight>> response = new ResponseStructure<>();
 
-			if (!flight.getContent().isEmpty()) {
-				response.setStatusCode(HttpStatus.OK.value());
-				response.setMessage("Flight retrieved successfully with pagination and sorting by " + field + "!");
-				response.setData(flight);
+		if (!flight.getContent().isEmpty()) {
+			response.setStatusCode(HttpStatus.OK.value());
+			response.setMessage("Flight retrieved successfully with pagination and sorting by " + field + "!");
+			response.setData(flight);
 
-				return new ResponseEntity<>(response, HttpStatus.OK);
-			} else {
-				throw new NoRecordFoundException("No Flight records found!");
-			}
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} else {
+			throw new NoRecordFoundException("No Flight records found!");
 		}
+	}
 
 }
