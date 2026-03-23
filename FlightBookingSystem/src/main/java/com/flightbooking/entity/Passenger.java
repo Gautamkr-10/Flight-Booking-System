@@ -17,6 +17,7 @@ public class Passenger {
 	private String gender;
 	private String seatNumber;
 	private long contactno;
+	private String email;
 	
 	@ManyToOne
     @JoinColumn

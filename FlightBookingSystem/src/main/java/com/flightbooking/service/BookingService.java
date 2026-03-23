@@ -34,6 +34,10 @@ public class BookingService {
 
 	@Autowired
 	private FlightRepository flightRepository;
+	
+	@Autowired
+	private EmailNotificationService emailNotificationService;
+
 
 	@Transactional
 
@@ -61,7 +65,20 @@ public class BookingService {
 			p.setBooking(booking);
 		}
 		booking.setStatus(BookingStatus.CONFIRMED);
-		Booking savedBooking = bookingDao.saveBooking(booking);
+		
+		//  SAVE BOOKING
+	    Booking savedBooking = bookingDao.saveBooking(booking);
+
+	    //  SEND EMAIL (ADD HERE)
+	    String userEmail = savedBooking
+	            .getPassengers()
+	            .get(0)
+	            .getEmail();
+
+	    emailNotificationService.sendBookingConfirmation(
+	            userEmail,
+	            savedBooking
+	    );
 		ResponseStructure<Booking> response = new ResponseStructure<>();
 		response.setStatusCode(HttpStatus.CREATED.value());
 		response.setMessage("Booking Success");

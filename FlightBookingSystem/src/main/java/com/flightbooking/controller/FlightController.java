@@ -12,6 +12,7 @@ import com.flightbooking.service.FlightService;
 
 @RestController
 @RequestMapping("/flight")
+@CrossOrigin(origins = "http://localhost:5173")
 public class FlightController {
 
 	@Autowired
