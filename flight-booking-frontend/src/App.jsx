@@ -26,7 +26,7 @@ const navigate = useNavigate();
 
   try {
     const response = await fetch(
-      `http://localhost:9090/flight/${from}/${to}`
+      `https://flight-booking-system-1-nskf.onrender.com/flight/${from}/${to}`
     );
 
     const data = await response.json();
