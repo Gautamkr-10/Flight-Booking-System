@@ -29,8 +29,11 @@ const navigate = useNavigate();
       `https://flight-booking-system-1-nskf.onrender.com/flight/${from}/${to}`
     );
 
-    const data = await response.json();
-    setFlights(data.data);
+    const result = await response.json();
+
+console.log("API response:", result);
+
+setFlights(Array.isArray(result.data) ? result.data : []);
   } catch (error) {
     console.error("Error fetching flights:", error);
   }
